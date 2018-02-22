@@ -1,0 +1,8 @@
+{% extends "users/base.html" %}
+{% block title %}Index{% endblock %}
+{% block body %}
+  <form action="{% url 'login' %}" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Login">
+  </form>
+{% endblock %}
