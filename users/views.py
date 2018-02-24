@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic
 from django.shortcuts import render, redirect
 from django.contrib.auth import forms, login, logout, authenticate
+from users.forms import LoginForm
 
 
 class Index(TemplateView):
@@ -13,11 +14,11 @@ class Index(TemplateView):
 
 
 class Login(View):
-    form = forms.AuthenticationForm
+    form = LoginForm
 
     def get(self, request):
         context = {'form' : self.form()}
-        print ("enter in get......................")
+        #print ("enter in get......................")
         return render(request, 'users/login.html', context)
 
     def post(self, request):
@@ -29,13 +30,13 @@ class Login(View):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                print ("authenticated......................")
+                #print ("authenticated......................")
                 return redirect('/')
             else:
-                print ("no login......................")
+                #print ("no login......................")
                 return redirect('/')
         else:
-            print ("invalid data......................")
+            #print ("invalid data......................")
             return redirect('/')
 
 
