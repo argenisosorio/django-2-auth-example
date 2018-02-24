@@ -8,7 +8,9 @@ from django.contrib.auth.forms import AuthenticationForm
 
 
 class LoginForm(AuthenticationForm):
-
+    """
+    Form that manages the User model fields.
+    """
     username = forms.CharField(widget=TextInput(attrs={
             'class':'form-control input-md',
             'style': 'width: 100%; display: inline;',

@@ -10,18 +10,30 @@ from users.forms import LoginForm
 
 
 class Index(TemplateView):
+    """
+    Class that shows the start template.
+    """
     template_name = "users/index.html"
 
 
 class Login(View):
+    """
+    Class that manages user authentication.
+    """
     form = LoginForm
 
     def get(self, request):
+        """
+        Method that manages access by get.
+        """
         context = {'form' : self.form()}
         #print ("enter in get......................")
         return render(request, 'users/login.html', context)
 
     def post(self, request):
+        """
+        Method that manages access by post.
+        """
         form = self.form(None, request.POST)
         context = {'form': form}
         if form.is_valid():
@@ -41,7 +53,13 @@ class Login(View):
 
 
 class Logout(View):
+    """
+    Class that manages user logout.
+    """
 
     def get(self, request):
+        """
+        Method that redirects after the close of session.
+        """
         logout(request)
         return redirect('/')
