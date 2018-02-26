@@ -6,3 +6,5 @@
 *.swp
 db.sqlite3
 app/migrations/
+base/migrations/
+users/migrations/
