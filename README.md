@@ -2,6 +2,7 @@
 
 * Login
 * Logout
+* Register
 
 ## Requirements
 ```
