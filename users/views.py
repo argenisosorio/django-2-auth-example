@@ -71,11 +71,11 @@ class Register(View):
         """
         form = self.form(request.POST)
         if form.is_valid():
-            print ('Form valid, save the data')
+            #print ('Form valid, save the data')
             form.save()
             return redirect('login')
         else:
-            print ('Error in the save data')
+            #print ('Error in the save data')
             context = {'form': form}
             return render(request, 'users/register.html', context)
 

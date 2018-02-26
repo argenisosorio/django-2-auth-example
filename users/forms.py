@@ -36,10 +36,52 @@ class RegisterForm(UserCreationForm):
     """
     Form that manages the User creation.
     """
-    first_name = forms.CharField(label='First Name')
-    last_name = forms.CharField(label='Last Name')
-    email = forms.EmailField(label='Email Address')
 
+    username = forms.CharField(widget=TextInput(attrs={
+            'class':'form-control input-md',
+            'style': 'width: 100%; display: inline;',
+        }), required = True)
+
+    first_name = forms.CharField(widget=TextInput(attrs={
+            'class':'form-control input-md',
+            'style': 'width: 100%; display: inline;',
+        }), required = True)
+
+    last_name = forms.CharField(widget=TextInput(attrs={
+            'class':'form-control input-md',
+            'style': 'width: 100%; display: inline;',
+        }), required = True)
+
+    email = forms.CharField(widget=TextInput(attrs={
+            'class':'form-control input-md',
+            'style': 'width: 100%; display: inline;',
+        }), required = True)
+
+    password1 = forms.CharField(widget=TextInput(attrs={
+            'class':'form-control input-md',
+            'style': 'width: 100%; display: inline;','type':'password',
+        }), required = True)
+
+    password2 = forms.CharField(widget=TextInput(attrs={
+            'class':'form-control input-md',
+            'style': 'width: 100%; display: inline;','type':'password',
+        }), required = True)
+
+    def save(self, commit = True):
+        """
+        Method that saves the data from the form.
+        Active users is default.
+        """
+        user = User.objects.create_user(self.cleaned_data['username'],
+                                     self.cleaned_data['email'],
+                                     self.cleaned_data['password1'])
+        #user.is_active = False
+        #user.is_active = True
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.save()
+        #print ("Enter in save method from RegisterForm")
+        return user
 
     class Meta:
         model = User
