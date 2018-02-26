@@ -14,12 +14,12 @@ class LoginForm(AuthenticationForm):
     """
     username = forms.CharField(widget=TextInput(attrs={
             'class':'form-control input-md',
-            'style': 'width: 100%; display: inline;',
+            'style':'width: 100%; display: inline;',
         }), required = True)
 
     password = forms.CharField(widget=TextInput(attrs={
             'class':'form-control input-md',
-            'style': 'width: 100%; display: inline;','type':'password',
+            'style':'width: 100%; display: inline;','type':'password',
         }), required = True)
 
     class Meta:
@@ -36,35 +36,40 @@ class RegisterForm(UserCreationForm):
     """
     Form that manages the User creation.
     """
-
     username = forms.CharField(widget=TextInput(attrs={
+            'value':'aosorio',
             'class':'form-control input-md',
-            'style': 'width: 100%; display: inline;',
+            'style':'width: 100%; display: inline;',
         }), required = True)
 
     first_name = forms.CharField(widget=TextInput(attrs={
+            'value':'argenis',
             'class':'form-control input-md',
-            'style': 'width: 100%; display: inline;',
+            'style':'width: 100%; display: inline;',
         }), required = True)
 
     last_name = forms.CharField(widget=TextInput(attrs={
+            'value':'osorio',
             'class':'form-control input-md',
-            'style': 'width: 100%; display: inline;',
+            'style':'width: 100%; display: inline;',
         }), required = True)
 
     email = forms.CharField(widget=TextInput(attrs={
+            'value':'aosorio@mail.com',
             'class':'form-control input-md',
-            'style': 'width: 100%; display: inline;',
+            'style':'width: 100%; display: inline;',
         }), required = True)
 
     password1 = forms.CharField(widget=TextInput(attrs={
+            'value':'arka.1234-d',
             'class':'form-control input-md',
-            'style': 'width: 100%; display: inline;','type':'password',
+            'style':'width: 100%; display: inline;','type':'password',
         }), required = True)
 
     password2 = forms.CharField(widget=TextInput(attrs={
+            'value':'arka.1234-d',
             'class':'form-control input-md',
-            'style': 'width: 100%; display: inline;','type':'password',
+            'style':'width: 100%; display: inline;','type':'password',
         }), required = True)
 
     def save(self, commit = True):
@@ -80,10 +85,8 @@ class RegisterForm(UserCreationForm):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.save()
-        #print ("Enter in save method from RegisterForm")
         return user
 
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
-
