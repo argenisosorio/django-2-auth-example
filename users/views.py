@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic
 from django.shortcuts import render, redirect
 from django.contrib.auth import forms, login, logout, authenticate
-from users.forms import LoginForm
+from users.forms import LoginForm, RegisterForm
 
 
 class Index(TemplateView):
@@ -50,6 +50,34 @@ class Login(View):
         else:
             #print ("invalid data......................")
             return redirect('/')
+
+
+class Register(View):
+    """
+    Class that allows you to create a user account.
+    """
+    form = RegisterForm
+
+    def get(self, request):
+        """
+        Method that manages access by get.
+        """
+        context = {'form' : self.form()}
+        return render(request, 'users/register.html', context)
+
+    def post(self, request):
+        """
+        Method that manages access by post.
+        """
+        form = self.form(request.POST)
+        if form.is_valid():
+            print ('Form valid, save the data')
+            form.save()
+            return redirect('login')
+        else:
+            print ('Error in the save data')
+            context = {'form': form}
+            return render(request, 'users/register.html', context)
 
 
 class Logout(View):
